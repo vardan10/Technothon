@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Wed Jun 28 19:01:03 IST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-015c-eee5-e4ed-000008c1b040 
+on database directory /home/vardan/Desktop/YoutubeAnalysis/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@7d59e968 
+Loaded from file:/home/vardan/spark/jars/derby-10.12.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_131-8u131-b11-0ubuntu1.16.04.2-b11
+user.dir=/home/vardan/Desktop/YoutubeAnalysis
+os.name=Linux
+os.arch=amd64
+os.version=4.8.0-56-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

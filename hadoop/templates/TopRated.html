@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  
+
+  
+  
+  
+
+  
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+  
+
+  
+   <style>
+        *, body, button, input, textarea, select {
+          text-rendering: optimizeLegibility;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+        table{
+            visibility: hidden;
+        }
+
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {
+          margin:0;
+          padding:0;
+        }
+        table {
+          border-collapse:collapse;
+          border-spacing:0;
+        }
+        fieldset,img {
+          border:0;
+        }
+        address,caption,cite,code,dfn,em,strong,th,var {
+          font-style:normal;
+          font-weight:normal;
+        }
+        ol,ul {
+          list-style:none;
+        }
+        caption,th {
+          text-align:left;
+        }
+        h1,h2,h3,h4,h5,h6 {
+          font-size:100%;
+          font-weight:normal;
+        }
+        q:before,q:after {
+          content:'';
+        }
+        abbr,acronym { border:0;}
+   </style>
+  
+
+  
+
+  
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  
+
+  
+
+  <style type="text/css">
+    
+  </style>
+
+  <title></title>
+
+  
+    
+
+
+
+
+<script type='text/javascript'>
+
+$(function () {
+    // On document ready, call visualize on the datatable.
+    $(document).ready(function() {
+        /**
+         * Visualize an HTML table using Highcharts. The top (horizontal) header
+         * is used for series names, and the left (vertical) header is used
+         * for category names. This function is based on jQuery.
+         * @param {Object} table The reference to the HTML table to visualize
+         * @param {Object} options Highcharts options
+         */
+        Highcharts.visualize = function(table, options) {
+            // the categories
+            options.xAxis.categories = [];
+            $('tbody th', table).each( function(i) {
+                options.xAxis.categories.push(this.innerHTML);
+            });
+    
+            // the data series
+            options.series = [];
+            $('tr', table).each( function(i) {
+                var tr = this;
+                $('th, td', tr).each( function(j) {
+                    if (j > 0) { // skip first column
+                        if (i == 0) { // get the name and init the series
+                            options.series[j - 1] = {
+                                name: this.innerHTML,
+                                data: []
+                            };
+                        } else { // add values
+                            options.series[j - 1].data.push(parseFloat(this.innerHTML));
+                        }
+                    }
+                });
+            });
+    
+            var chart = new Highcharts.Chart(options);
+        }
+    
+        var table = document.getElementById('datatable'),
+        options = {
+            chart: {
+                renderTo: 'container',
+                type: 'column'
+            },
+            title: {
+                text: 'Top 10 most Liked videos'
+            },
+            xAxis: {
+            },
+            yAxis: {
+                title: {
+                    text: 'Units'
+                }
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<b>'+ this.series.name +'</b><br/>'+
+                        this.y +' '+ this.x.toLowerCase();
+                }
+            }
+        };
+    
+        Highcharts.visualize(table, options);
+    });
+    
+});
+
+</script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script type='text/javascript'>
+$(document).ready(function () {
+Highcharts.chart('container2', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Execution Time Comparision'
+    },
+    xAxis: {
+        categories: [
+            ''
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Execution Time (Sec)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} Sec</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'mapReduce',
+        data: [{{mapReduce}}]
+
+    }, {
+        name: 'spark',
+        data: [{{spark}}]
+
+    }, {
+        name: 'hive',
+        data: [{{hive}}]
+
+    }]
+});
+});
+</script>
+
+</head>
+
+<body>
+
+
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+<table id="datatable">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Likes</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for item in data %}
+        <tr>
+            <th>{{item.key}}</th>
+            <td>{{item.value}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+
+
+
+
+<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
+

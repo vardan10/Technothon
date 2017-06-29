@@ -1,0 +1,116 @@
+<html>
+   <head>
+      
+      <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables.css">
+      <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+
+
+        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.min.js"></script>
+      
+      
+  </head>
+
+    <body>
+        <br />
+        <h2><center>CountryWise Analysis</center></h2>
+        <br />
+        <div class="container">
+            
+<table cellpadding="0" cellspacing="0" border="0" class="dataTable" id="example">
+    <thead>
+        <tr>
+            <th>Country</th>
+            <th>Video Title</th>
+            <th>View Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        {% for item in data %}
+            <tr>
+                <td>{{item.country}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.count}}</td>
+            </tr>
+        {% endfor %}
+        
+    </tbody>
+</table>
+            
+        </div>
+
+
+
+
+
+
+
+
+
+    <br /><br /><br /><br /><br /><br /><br />
+    <div id="container2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script type='text/javascript'>
+    $(document).ready(function () {
+    Highcharts.chart('container2', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Execution Time Comparision'
+        },
+        xAxis: {
+            categories: [
+                ''
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Execution Time (Sec)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} Sec</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'mapReduce',
+            data: [{{mapReduce}}]
+
+        }, {
+            name: 'spark',
+            data: [{{spark}}]
+
+        }, {
+            name: 'hive',
+            data: [{{hive}}]
+
+        }]
+    });
+    });
+    </script>
+
+
+    <script>
+    $(document).ready(function() {
+        $('#example').dataTable({"sPaginationType": "full_numbers"});
+    });
+    </script>
+
+    </body>
+</html>

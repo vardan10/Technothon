@@ -1,0 +1,417 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Technothon - Youtube Analysis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+
+<link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+<link href="{% static 'color/default.css' %}" rel="stylesheet">
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+<link rel="shortcut icon" href="{% static 'img/youtube.ico' %}">
+
+
+
+<style>
+/* ---------------------------------------------------------------------------- */
+/* -------------------------------------Content-------------------------------- */
+/* ---------------------------------------------------------------------------- */
+#page-content{}
+
+/* ---HomePage--- */
+.box-content {overflow: hidden}
+.box-content .heading{margin-bottom: 50px; text-align: center;}
+.box-content .heading h2{ font-weight: 300;font-size: 28px;}
+.box-content .heading.bold h2{ font-weight: 800;font-size: 40px;letter-spacing: 2px;}
+.box-content .heading.light h2{color: #fff;}
+.box-content .heading.dark h2{color: #2b2d3f;}
+
+.box-content.box-style-0{background-image: url({% static 'images/patftern-white2.png' %}); background-color: #fff;}
+.box-content.box-style-1{background: url({% static 'images/pattern-white.png' %}) center center;background-size: cover; background-color: #fff;}
+.box-content.box-style-2{background-image: url({% static 'images/home-6.png' %});background-position: 80% top;background-repeat: no-repeat;background-color: #F8F9F1;}
+.box-content.box-style-3{background: url({% static 'images/ep_naturalblack.png' %}) fixed center center;color:#fff;}
+
+
+
+@media(min-width:768px){
+	.box-content.box-1 .box-item.fix-padding{padding-top: 200px}
+}
+
+
+
+
+/* ---------------------------------------------------------------------------- */
+/* ---------------------------------Hexagon------------------------------------ */
+/* ---------------------------------------------------------------------------- */
+.hexagon {position: relative;width: 120px; height: 69.28px;background-color: #ffffff;margin: 34.64px 0;box-shadow: 0 0 7px rgba(0,0,0,0.5);}
+.hexagon .hexagon-inner {display: block;position: absolute;bottom: 0;width: 100%;height: 100%;text-align: center;z-index: 999;}
+.hexagon .hexagon-inner .hexagon-inner-content {position: absolute;top: 50%;width: 100%;text-align: center;transform: translateY(-50%);}
+
+.hexagon:before,
+.hexagon:after {content: "";position: absolute;z-index: 1;width: 84.85px;height: 84.85px;-webkit-transform: scaleY(0.5774) rotate(-45deg);-ms-transform: scaleY(0.5774) rotate(-45deg);transform: scaleY(0.5774) rotate(-45deg);background-color: inherit;left: 17.5736px;box-shadow: 0 0 7px rgba(0,0,0,0.5);}
+
+.hexagon:before {top: -42.4264px;}
+
+.hexagon:after {bottom: -42.4264px;}
+
+/*cover up extra shadows*/
+.hexagon span {display: block;position: absolute;top: 0;left: 0;width: 120px;height: 69.2820px;z-index: 2;background: #fff;}
+
+
+
+#youtubeURL{
+
+	width: 50%;
+	
+	font-size: 1.5em;
+	/*margin-bottom: 1.5em;
+	padding: 0.5em;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;*/
+}
+
+
+#btn {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #af1111;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #bfbbbb;
+}
+
+#btn:hover {background-color: #c10303}
+
+#btn:active {
+  background-color: #e50d0d;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+#box-featured1{
+	background-color: #e3e4e5;
+}
+</style>
+
+</head>
+<body>
+<!-- navbar -->
+<div class="navbar-wrapper">
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<!-- Responsive navbar -->
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+				</a>
+				<h1 class="brand"><a href="{% url 'index' %}">TECHNOTHON</a></h1>
+				<!-- navigation -->
+				<nav class="pull-right nav-collapse collapse">
+				<ul id="menu-main" class="nav">
+					<li><a title="team" href="#about">About</a></li>
+					<li><a title="works" href="#works">Works</a></li>
+					
+				</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Header area -->
+<div id="header-wrapper" class="header-slider">
+	<header class="clearfix">
+		<div class="header-text">
+			<p class="home-slide-content">
+				<strong>Analytics Made Easy</strong> 
+			</p>
+		</div>
+	</header>
+</div>
+<!-- spacer section -->
+<section class="spacer green">
+<div class="container">
+	<div class="row">
+		<div class="span7 alignright flyLeft">
+			<blockquote class="large">
+				 You can have data without information, but you cannot have information without data <cite>Daniel Keys Moran</cite>
+			</blockquote>
+		</div>
+		<div class="span4 aligncenter flyRight">
+			<i class="icon-coffee icon-10x"></i>
+		</div>
+	</div>
+</div>
+</section>
+	
+		<!-- ////////////Content Box 01 -->
+		<section class="box-content box-1 box-style-1 section" id="box-featured" data-anchor="featured">
+			<div class="container-fluid">
+				<div class="row heading dark bold">
+					
+						<h4>QUERIES</h4>
+					
+				</div>
+
+				<div class="row">
+					<div class="col-lg-2 col-sm-3 col-md-4 col-xs-6">
+						<div class="box-item">
+							<div class="wrap-icon">
+								<a href="channellikes/" target="_blank">
+								<div class="hexagon">
+									<div class="hexagon-inner">
+										<div class="hexagon-inner-content">
+											<i class="fa fa-check-square-o fa-3x"></i>
+										</div>
+									</div>
+									<span></span>
+								</div>
+								</a>
+							</div>
+							<h3>Top 10 Channels with Max Likes</h3>
+
+						</div>
+					</div>
+					<div class="col-lg-2 col-sm-3 col-md-4 col-xs-6">
+						<div class="box-item fix-padding">
+							<div class="wrap-icon">
+								<a href="categorycomments/" target="_blank">
+									<div class="hexagon">
+										<div class="hexagon-inner">
+											<div class="hexagon-inner-content">
+												<i class="fa fa-check-square-o fa-3x"></i>
+											</div>
+										</div>
+										<span></span>
+									</div>
+								</a>
+							</div>
+							<h3>Top 5 Categories with Max Comments</h3>
+						</div>
+					</div>
+					<div class="col-lg-2 col-sm-3 col-md-4 col-xs-6">
+						<div class="box-item">
+							<div class="wrap-icon">
+								<a href="categoryuploaded/" target="_blank">
+									<div class="hexagon">
+										<div class="hexagon-inner">
+											<div class="hexagon-inner-content">
+												<i class="fa fa-check-square-o fa-3x"></i>
+											</div>
+										</div>
+										<span></span>
+									</div>
+								</a>
+							</div>
+							<h3>Top 5 categories with Max uploaded videos</h3>
+						</div>
+					</div>
+					<div class="col-lg-2 col-sm-3 col-md-4 col-xs-6">
+						<div class="box-item fix-padding">
+							<div class="wrap-icon">
+								<a href="toplikes/" target="_blank">
+									<div class="hexagon">
+										<div class="hexagon-inner">
+											<div class="hexagon-inner-content">
+												<i class="fa fa-check-square-o fa-3x"></i>
+											</div>
+										</div>
+										<span></span>
+									</div>
+								</a>
+							</div>
+							<h3>Top 10 liked Videos</h3>
+						</div>
+					</div>
+					<div class="col-lg-2 col-sm-3 col-md-4 col-xs-6">
+						<div class="box-item">
+							<div class="wrap-icon">
+								<a href="topviewed/" target="_blank">
+									<div class="hexagon">
+										<div class="hexagon-inner">
+											<div class="hexagon-inner-content">
+												<i class="fa fa-check-square-o fa-3x"></i>
+											</div>
+										</div>
+										<span></span>
+									</div>
+								</a>
+							</div>
+							<h3>Top 10 most viewed Videos</h3>
+
+						</div>
+					</div>
+					<div class="col-lg-2 col-sm-3 col-md-4 col-xs-6">
+						<div class="box-item fix-padding">
+							<div class="wrap-icon">
+								<a href="countryviews/" target="_blank">
+									<div class="hexagon">
+										<div class="hexagon-inner">
+											<div class="hexagon-inner-content">
+												<i class="fa fa-check-square-o fa-3x"></i>
+											</div>
+										</div>
+										<span></span>
+									</div>
+								</a>
+							</div>
+							<h3>Countrywise Top 5 videos with Max Views</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+
+<!--to add same backround image as previous div : box-style-1 -->
+	<section class="box-content box-1 section" id="box-featured1" data-anchor="featured">
+		<div class="container-fluid">
+
+			<div class="row heading dark bold">
+					<h4>Analyse Youtube Video Comments</h4>	
+			</div>
+			<form action="sentiment" method="GET">
+				 <center><label><h2>Enter video URL   <h2></label></center>
+				<br/>
+				 <center><!-- <input id="youtubeURL" type="text" name="cid" placeholder=" Eg : https://www.youtube.com/watch?v=1W9tQMClpCc" > -->
+				 <input type="text" name="search" placeholder="Eg : https://www.youtube.com/watch?v=1W9tQMClpCc"></center> 
+			
+				<br/><br/>
+
+				<center><button id="btn" type="submit" value="Submit" >SUBMIT</button></center>
+				
+			</form>
+			<br><br>
+		</div>
+	</section>
+
+
+
+
+<!-- end spacer section -->
+<!-- section: team -->
+<section id="about" class="section">
+<div class="container">
+	<h4>Who We Are</h4>
+	<div class="row">
+		<div class="span4 offset1">
+			<div>
+				<h2>We live with <strong>creativity</strong></h2>
+				<p>
+					Work is more fun when you are a part of a team. You can build on other people's ideas and share in completing the assignment together. You also have another pair of eyes to look at the work, which further reduces errors and mistakes. Teams that enjoy working together can accomplish great things for your company and great teams achieve their goals again and again.
+				</p>
+			</div>
+		</div>
+		<div class="span6">
+			<div class="aligncenter">
+				<img src="{% static 'img/icons/creativity.png' %}" alt="" />
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span3 offset1 flyIn">
+			<div class="people">
+				<img class="team-thumb img-circle" height="150" width="150" src="{% static 'img/team/img19.png' %}" alt="" />
+				<h3>Diksha <br>Bandodkar</h3>
+				
+			</div>
+		</div>
+		<div class="span3 flyIn">
+			<div class="people">
+				<img class="team-thumb img-circle" height="150" width="150" src="{% static 'img/team/img16.png' %}" alt="" />
+				<h3>Vaishnavi <br>Kamat</h3>
+				
+			</div>
+		</div>
+		<div class="span3 flyIn">
+			<div class="people">
+				<img class="team-thumb img-circle" height="150" width="150" src="{% static 'img/team/img13.png' %}" alt="" />
+				<h3>Chandrama <br>Dessai</h3>
+				
+			</div>
+		</div>
+
+	</div>
+	<div class="row">
+		<div class="span2 flyIn">
+			<div class="people">
+				<img class="team-thumb img-circle" src="{% static 'img/team/img-1.jpg' %}" alt="" />
+				<h3>Vardan <br>Nadkarni</h3>
+				
+			</div>
+		</div>
+		<div class="span2 offset1 flyIn">
+			<div class="people">
+				<img class="team-thumb img-circle" src="{% static 'img/team/img-2.jpg' %}" alt="" />
+				<h3>Prasad <br>Desai</h3>
+				
+			</div>
+		</div>
+				<div class="span2 offset1 flyIn">
+			<div class="people">
+				<img class="team-thumb img-circle" src="{% static 'img/team/img-3.jpg' %}" alt="" />
+				<h3>Abhay <br>Singh</h3>
+				
+			</div>
+		</div>
+				<div class="span2 offset1 flyIn">
+			<div class="people">
+				<img class="team-thumb img-circle" src="{% static 'img/team/img-4.jpg' %}" alt="" />
+				<h3>Tanmay <br>Prabhudesai</h3>
+				
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /.container -->
+</section>
+
+
+
+
+<footer>
+<div class="container">
+	<div class="row">
+		<div class="span6 offset3">
+			<ul class="social-networks">
+				<li><a href="#"><i class="icon-circled icon-bgdark icon-instagram icon-2x"></i></a></li>
+				<li><a href="#"><i class="icon-circled icon-bgdark icon-twitter icon-2x"></i></a></li>
+				<li><a href="#"><i class="icon-circled icon-bgdark icon-pinterest icon-2x"></i></a></li>
+			</ul>
+			<p class="copyright">
+				&copy; Technothon 2017 | GOA | All rights reserved.
+			</p>
+		</div>
+	</div>
+</div>
+<!-- ./container -->
+</footer>
+<a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bgdark icon-2x"></i></a>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/jquery.scrollTo.js' %}"></script>
+<script src="{% static 'js/jquery.nav.js' %}"></script>
+<script src="{% static 'js/jquery.localscroll-1.2.7-min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+<script src="{% static 'js/isotope.js' %}"></script>
+<script src="{% static 'js/jquery.flexslider.js' %}"></script>
+<script src="{% static 'js/inview.js' %}"></script>
+<script src="{% static 'js/animate.js' %}"></script>
+<script src="{% static 'js/validate.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+</html>
