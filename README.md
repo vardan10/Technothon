@@ -12,14 +12,18 @@ This is a study project and includes running queries using Spark, MapReduce and 
 
 4. Setup hive 2.x.x (2.1.0 used for testing). HIVE_HOME variable should be set
 
-5. Install Python (Sudo apt-get install python)
+5. Move youtubeData.txt to HDFS as /youtubeData.txt
 
-6. Install pip (sudo apt-get install python-pip)
+6. Install Java
 
-6. Run the command pip install -r requirements.txt
+7. Install Python (Sudo apt-get install python)
 
-7. Run the cron.py file to run all the queries (python cron.py)
+8. Install pip (sudo apt-get install python-pip)
 
-8. Run Django server (python manage.py runserver)
+9. Run the command pip install -r requirements.txt
 
-9. Open localhost:8000/app/ in browser
+10. Run the cron.py file to run all the queries (python cron.py)
+
+11. Run Django server (python manage.py runserver)
+
+12. Open localhost:8000/app/ in browser
